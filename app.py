@@ -1,3 +1,4 @@
+from random import randint
 from flask import Flask
 
 app = Flask(__name__)
@@ -32,11 +33,19 @@ def sayntimes(word, n):
     message = ''
     if n.isdigit() == True:
         for i in range(int(n)):
-            message += word 
+            message += word + ' ' 
     else:
         message = 'Invalid input.Please try again by entering a word and a number !'
 
     return message
+
+@app.route('/dicegame')
+def dicegame():
+    dice_roll = randint(1,6)
+    if dice_roll == 6:
+        return f'You rolled a {dice_roll}. You won!'
+    else:
+        return f'You rolled a {dice_roll}. You lost!'
 
 if __name__ == '__main__':
     app.run(debug=True)
