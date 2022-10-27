@@ -16,6 +16,28 @@ def favorite_animal(users_animal):
 def favorite_dessert(users_dessert):
     return f'How did you know I liked {users_dessert}'
 
+@app.route('/madlibs/<adjective>/<noun>')
+def madlibs(adjective,noun):
+    return f'I went to the store to purchase a {adjective} {noun}'
+
+@app.route('/multiply/<number1>/<number2>')
+def multiply(number1, number2):
+    if number1.isdigit() == True and number2.isdigit() == True:
+        return f'{number1} times {number2} is {int(number1) * int(number2)}'
+    else:
+        return f'Invalid inputs. Please try again by entering 2 numbers!'
+
+@app.route('/sayntimes/<word>/<n>')
+def sayntimes(word, n):
+    message = ''
+    if n.isdigit() == True:
+        for i in range(int(n)):
+            message += word 
+    else:
+        message = 'Invalid input.Please try again by entering a word and a number !'
+
+    return message
+
 if __name__ == '__main__':
     app.run(debug=True)
 
